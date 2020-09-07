@@ -1,0 +1,68 @@
+{% macro jpg(name, alt='Image') %}
+<img
+  src="images/{{ name }}-1800.jpg"
+  srcset="images/{{ name }}-400.jpg 400w, images/{{ name }}-800.jpg 800w, images/{{ name }}-1200.jpg 1200w, images/{{ name }}-1800.jpg 1800w"
+  alt="{{ alt }}"
+/>
+{% endmacro %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charset="utf-8">
+        {%block title%}<title>Traffic Stops</title>{%endblock%}
+        {%include "meta/_icons.html"%}
+
+        {%include "meta/_social.html"%}
+        {% if env == 'production' %}
+        <link href="css/main-app.css" rel="stylesheet">
+        {% endif %}
+
+        <!-- Google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+        <!-- Font awesome -->
+        <script src="https://use.fontawesome.com/6c4d370962.js"></script>
+        <!-- jQuery -->
+        <script
+          src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+          crossorigin="anonymous">
+        </script>
+    </head>
+
+    <body>
+      {% include "partials/_nav.html" %}
+      {% include "partials/_header.html" %}
+
+      <figure class="no-gutters-phone">
+        <img src="images/campus.jpg"></br>
+      <figcaption class="figcaption"><figcredit style='font-family:benton-sans'>SAMUEL ALBILLO | SENIOR STAFF</figcaption>
+      </figure>
+      <h4>Graphics Draft</h4>
+      <div class='story'>
+        <p>The graph below shows the number of traffic stops per 100 people living in Berkeley, grouped by ethnicity. For instance, in 2016, the Berkeley Police Department stopped black drivers 35 times out of every 100 black people residing in Berkeley.
+        </p>
+      </div>
+      <div class='story'>
+        <p>The graph below shows the number of car searches for every 100 stops. This demonstrates that bias may extend beyond mere stops to the searches themselves.
+        </p>
+      </div>
+      <center>{% include "partials/line_stops.html" %}</center>
+      <center>{% include "partials/line_search.html" %}</center>
+    <div class="nerd-box">
+    </body>
+<h4>About this story</h4>
+<p align='left'>
+  Data for re-opening plans for colleges was sourced from <a href="https://data.cityofberkeley.info/"> City of Berkeley Open Data</a>.
+</p>
+{% include "partials/_footer.html" %}
+<script type="text/javascript">window.tweetText = "{{META.share.twitter.share_tweet}}";</script>
+<br>
+<h4>Support us</h4>
+<p>We're a nonprofit, student-run newsroom. Please consider <a href="https://donate.dailycal.org/">donating</a> to support our coverage.</p>
+</html>
+{% block js %}
+<script type="text/javascript" src="js/main-app.bundle.js"></script>
+{% endblock %}
