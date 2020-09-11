@@ -36,7 +36,7 @@ path.area {
 </style>
 
 <body>
-<div id="line_app"></div>
+<div id="line_stops"></div>
 </body>
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -101,7 +101,7 @@ d3.csv("bpd_stop.csv", function(error, data) {
   y.domain([0, 40]).nice();
 
   // Add an svg_app element with the desired dimensions and margin.
-  var svg_app = d3.select("#line_app").append("svg")
+  var svg_app = d3.select("#line_stops").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -224,13 +224,13 @@ legend.append("text")
 
     var lines = document.getElementsByClassName('line');
 
-    var mousePerLine_app = mouseG_app.selectAll('.mouse-per-line')
+    var mousePerline_stops = mouseG_app.selectAll('.mouse-per-line')
     .data([berk_aa_app, berk_h_app, berk_ai_app,berk_w_app, berk_ap_app])
       .enter()
       .append("g")
       .attr("class", "mouse-per-line");
 
-    mousePerLine_app.append("circle")
+    mousePerline_stops.append("circle")
       .attr("r", 7)
       .style("stroke", function(d) {
         return colors(d[0].symbol);
@@ -239,7 +239,7 @@ legend.append("text")
       .style("stroke-width", "1px")
       .style("opacity", "0");
 
-    mousePerLine_app.append("text")
+    mousePerline_stops.append("text")
       .attr("transform", "translate(10,3)");
 
     var rectG_app = mouseG_app.append('svg_app:rect') // append a rect to catch mouse movements on canvas

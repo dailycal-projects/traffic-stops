@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<center style='font-family:benton-sans'>Reopening Plans for Colleges in California (By Enrollment)</center></br>
+
+<div id="stacked_bar"></div>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+// create the svg
+
+var formatPercent = d3.format(".0%");
+pageWidth = 1200;
+
+margin = {top: 60, right: 100, bottom: 50, left: 70};
+width = pageWidth - margin.left - margin.right;
+width = Math.min(width, 600 - margin.left - margin.right)
+width = Math.max(width, 500)
+height = (width) - margin.top - margin.bottom;
+
+var div = d3.select("#stacked_bar").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
+var svg = d3.select("#stacked_bar").append("svg")
+              .attr("width", width + margin.left + margin.right)
+              .attr("height", height + margin.top + margin.bottom);
+g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// set x scale
+var x = d3.scaleBand()
+    .rangeRound([0, width])
+    .paddingInner(0.5)
+    .align(0.1);
+
+// set y scale
+var y = d3.scaleLinear()
+    .rangeRound([height, 0]);
+
+// set the colors
+var z = d3.scaleOrdinal()
+       .range([ "#d18975", "#8F679C", "#338A6C", "#479BD1", "#f4803f"])
+
+var data = [
+  { Enrollment: "White", "Citation": "8796", Warning: "10854",  Arrest: "563" , Other: "331", Total:"20544"},
+  { Enrollment: "Black", "Citation": "4540", Warning: "13939",  Arrest: "897" , Other: "400",Total:"19776"},
+  { Enrollment: "Hispanic", "Citation": "2491", Warning: "4670",  Arrest: "266" , Other: "107",Total:"7534"},
+  { Enrollment: "Other", "Citation": "2381", Warning: "3356",  Arrest: "92" , Other: "56",Total:"5885"},
+  { Enrollment: "Asian", "Citation": "2054", Warning: "2398",  Arrest: "112" , Other: "57",Total:"4621"},
+];
+
+  var keys = ["Citation", "Warning", "Arrest", "Other"]
+
+  x.domain(["White", "Black", "Hispanic", "Other", "Asian"]);
+  y.domain([0, 21000]).nice();
+  z.domain(keys);
+
+  g.append("g")
+    .selectAll("g")
+    .data(d3.stack().keys(keys)(data))
+    .enter().append("g")
+      .attr("fill", function(d) { return z(d.key); })
+      .attr("opacity", 0.85)
+    .selectAll("rect")
+    .data(function(d) { return d; })
+    .enter().append("rect")
+      .attr("x", function(d) { return x(d.data.Enrollment); })
+      .attr("y", function(d) { return y(d[1]); })
+      .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+      .attr("width", x.bandwidth())
+    .on("mouseover", function(d) {
+        div.transition()
+          .duration(200)
+          .style("opacity", 1)
+          let p = d3.format(',')((d[1] - d[0]).toString()) + " (" + formatPercent((d[1] - d[0]) / d.data.Total) + ")"
+          div.html(p)
+              .style("width", "75px")
+              .style("height", "70px")
+              .style("text-align", "center")
+              .style("left", (d3.event.pageX + 10) + "px")
+              .style("top", (d3.event.pageY - 15) + "px")
+              .style("font-size", "18x")
+              .style("opacity", 0.7);
+          })
+    .on("mouseout", function(d) {
+        div.transition()
+          .duration(300)
+          .style("opacity", 0);
+      });
+
+  //g.append("text")
+    //  .attr("x", (width / 2) - 100)
+    //  .attr("y", height + (margin.bottom/1.2))
+    //  .style("font-size", 16)
+    //  .style("font-family", "benton-sans")
+    //  .text("Undergraduate Enrollment")
+
+  //g.append("text")
+    //  .attr("transform", "rotate(-90)")
+      //.attr("x", 0 - 200)
+      //.attr("y", 0 - 55)
+      //.style("font-size", 16)
+      //.style("font-family", "benton-sans")
+      //.text("Number of colleges")
+
+  scale_bar = 1;
+  //if (width < 900) {scale_bar=1;}
+  if (pageWidth < 600) {scale_bar=1.7;}
+  fsize = 16 * scale_bar;
+  square = 16 * scale_bar;
+  spacing = 22 * scale_bar;
+
+  g.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0," + height + ")")
+      .style("font-family", "benton-sans")
+      .style("font-size", fsize)
+      .call(d3.axisBottom(x).tickPadding(10).tickSize(3));
+
+  g.append("g")
+      .attr("class", "axis")
+      .style("font-size", fsize)
+      .style("font-family", "benton-sans")
+      .call(d3.axisLeft(y))//.ticks(5).tickSize(0).tickPadding(25))
+    .append("text")
+      .attr("x", 2)
+      .attr("y", y(y.ticks().pop()) + 0.5)
+      .attr("dy", "0.32em")
+      .attr("fill", "#000")
+      .attr("text-anchor", "start");
+
+
+  var legend = svg.append("g")
+      .style("font-family", "benton-sans")
+      .style("font-size", fsize)
+      .attr("text-anchor", "end")
+    .selectAll("g")
+    .data(keys)
+    .enter().append("g")
+      .attr("transform", function(d, i) { return "translate(0," + (i * spacing) + ")"; });
+
+  legend.append("rect")
+      .attr("x", width)
+      .attr("y", 30)
+      .attr("width", square)
+  .attr("height", square)
+      .attr("fill", z);
+
+  legend.append("text")
+      .attr("x", width + 50)
+      .attr("text-anchor", "start")
+      .attr("y", 30 + (square/2))
+      .attr("dy", "0.32em")
+      .text(function(d) { return d; });
+</script>
