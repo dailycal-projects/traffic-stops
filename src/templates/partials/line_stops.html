@@ -28,9 +28,17 @@ path.area {
   display: none;
 }
 
+.x.axis text {
+  font-family: benton-sans;
+}
+
 .y.axis line, .y.axis path {
   fill: none;
   stroke: #000;
+}
+
+.y.axis text {
+  font-family: benton-sans;
 }
 
 </style>
@@ -97,8 +105,6 @@ d3.csv("bpd_stop.csv", function(error, data) {
   });
 
   // Compute the minimum and maximum date, and the maximum price.
-  console.log(berk_aa_stops[0].date)
-  console.log(berk_aa_stops[berk_aa_stops.length - 1].date)
   x.domain([berk_ai_stops[0].date, berk_ai_stops[berk_ai_stops.length - 1].date]);
   y.domain([0, 40]).nice();
 
@@ -121,12 +127,6 @@ d3.csv("bpd_stop.csv", function(error, data) {
       .attr("class", "x axis")
       .attr("transform", "translate(0," + (height + 10) + ")")
       .call(xAxis);
-
-  // Add the y-axis.
-  svg_stops.append("g")
-      .attr("class", "y axis")
-      .attr("transform", "translate(" + width + ",0)")
-      .call(yAxis);
 
   var colors = d3.scaleOrdinal().domain(['Black', 'Hispanic', 'White', 'Asian', 'Other']).range(d3.schemeCategory10);
   svg_stops.selectAll('.line')
@@ -181,6 +181,12 @@ legend.append("text")
     .attr('class', 'curtain')
     .attr('transform', 'rotate(180)')
     .style('fill', '#ffffff');
+
+  // Add the y-axis.
+  svg_stops.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(" + width + ",0)")
+      .call(yAxis);
 
   /* Optionally add a guideline */
   var guideline = svg_stops.append('line')

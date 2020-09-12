@@ -13,12 +13,12 @@
   },
   "share": {
     "fbook": {
-      "card_title": "aff-action",
-      "card_description": "UC Berkeley's independent student-run newspaper",
+      "card_title": "Traffic Stops",
+      "card_description": "Analyzing Berkeley Police",
       "author": "dailycal"
     },
     "twitter": {
-      "card_title": "aff-action",
+      "card_title": "Traffic Stops",
       "share_tweet": "UC Berkeley's independent student-run newspaper",
       "card_description": "The latest news from The Daily Californian.",
       "author": "@dailycal"

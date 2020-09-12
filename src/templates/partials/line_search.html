@@ -114,12 +114,6 @@ d3.csv("bpd_search.csv", function(error, data) {
       .attr("transform", "translate(0," + (height + 10) + ")")
       .call(xAxis);
 
-  // Add the y-axis.
-  svg_search.append("g")
-      .attr("class", "y axis")
-      .attr("transform", "translate(" + width + ",0)")
-      .call(yAxis);
-
   var colors = d3.scaleOrdinal().domain(['Black', 'Hispanic', 'White', 'Asian', 'Other']).range(d3.schemeCategory10);
   svg_search.selectAll('.line')
     .data([berk_aa_app, berk_h_app, berk_ai_app,berk_w_app, berk_ap_app])
@@ -173,6 +167,13 @@ legend.append("text")
     .attr('class', 'curtain')
     .attr('transform', 'rotate(180)')
     .style('fill', '#ffffff');
+
+  // Add the y-axis.
+  svg_search.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(" + width + ",0)")
+      .call(yAxis);
+
 
   /* Optionally add a guideline */
   var guideline = svg_search.append('line')
