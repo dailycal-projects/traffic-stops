@@ -1,55 +1,52 @@
 <!DOCTYPE html>
+<center style='font-family:benton-sans'>Reopening Plans for Colleges in California (By Enrollment)</center></br>
+
 <div id="stacked_bar"></div>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 // create the svg
 
-var formatPercent = d3.format(".0%");
+margin = {top: 60, right: 100, bottom: 50, left: 70};
+width = pageWidth - margin.left - margin.right;
+width = Math.min(width, 600 - margin.left - margin.right)
+width = Math.max(width, 500)
+height = (width) - margin.top - margin.bottom;
 
-height_bar = width * 0.7;
 var div = d3.select("#stacked_bar").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
 var svg = d3.select("#stacked_bar").append("svg")
               .attr("width", width + margin.left + margin.right)
-              .attr("height", height_bar + margin.top + margin.bottom);
+              .attr("height", height + margin.top + margin.bottom);
 g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var title = svg.append("g")
-      	.attr("transform", "translate(" + [width / 2 + 100, 50] + ") ")
-
-title.append("text")
-      	.attr("class", "title")
-      	.attr("text-anchor", "middle")
-      	.text("Consequence of traffic stops by ethnicity")
-
 // set x scale
-var x_bar = d3.scaleBand()
+var x = d3.scaleBand()
     .rangeRound([0, width])
     .paddingInner(0.5)
     .align(0.1);
 
 // set y scale
-var y_bar = d3.scaleLinear()
-    .rangeRound([height_bar, 0]);
+var y = d3.scaleLinear()
+    .rangeRound([height, 0]);
 
 // set the colors
 var z = d3.scaleOrdinal()
        .range([ "#d18975", "#8F679C", "#338A6C", "#479BD1", "#f4803f"])
 
 var data = [
-  { Enrollment: "White", "Citation": "8796", Warning: "10854",  Arrest: "563" , Other: "331", Total:"20544"},
-  { Enrollment: "Black", "Citation": "4540", Warning: "13939",  Arrest: "897" , Other: "400",Total:"19776"},
-  { Enrollment: "Hispanic", "Citation": "2491", Warning: "4670",  Arrest: "266" , Other: "107",Total:"7534"},
-  { Enrollment: "Other", "Citation": "2381", Warning: "3356",  Arrest: "92" , Other: "56",Total:"5885"},
-  { Enrollment: "Asian", "Citation": "2054", Warning: "2398",  Arrest: "112" , Other: "57",Total:"4621"},
+  { Enrollment: "White", "Traffic": "16883", Investigation: "2171",  "Reas. Suspicion": "1081" , "Parole": "332", "Wanted":"77", Total: "20544"},
+  { Enrollment: "Black", "Traffic": "16406", Investigation: "2043",  "Reas. Suspicion": "810" , "Parole": "452", "Wanted":"62", Total:"19776"},
+  { Enrollment: "Hispanic", "Traffic": "6594", Investigation: "590",  "Reas. Suspicion": "231" , "Parole": "95", "Wanted":"24", Total:"7534"},
+  { Enrollment: "Other", "Traffic": "5410", Investigation: "284",  "Reas. Suspicion": "125" , "Parole": "41", "Wanted":"25", Total:"5885"},
+  { Enrollment: "Asian", "Traffic": "4232", Investigation: "241",  "Reas. Suspicion": "64" , "Parole": "60", "Wanted":"23", Total:"4621"},
 ];
 
-  var keys = ["Citation", "Warning", "Arrest", "Other"]
+  var keys = ["Investigation", "Reas. Suspicion", "Parole", "Wanted"]
 
-  x_bar.domain(["White", "Black", "Hispanic", "Other", "Asian"]);
-  y_bar.domain([0, 21000]).nice();
+  x.domain(["White", "Black", "Hispanic", "Other", "Asian"]);
+  y.domain([0, 5000]).nice();
   z.domain(keys);
 
   g.append("g")
@@ -61,10 +58,10 @@ var data = [
     .selectAll("rect")
     .data(function(d) { return d; })
     .enter().append("rect")
-      .attr("x", function(d) { return x_bar(d.data.Enrollment); })
-      .attr("y", function(d) { return y_bar(d[1]); })
-      .attr("height", function(d) { return y_bar(d[0]) - y_bar(d[1]); })
-      .attr("width", x_bar.bandwidth())
+      .attr("x", function(d) { return x(d.data.Enrollment); })
+      .attr("y", function(d) { return y(d[1]); })
+      .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+      .attr("width", x.bandwidth())
     .on("mouseover", function(d) {
         div.transition()
           .duration(200)
@@ -109,19 +106,19 @@ var data = [
 
   g.append("g")
       .attr("class", "axis")
-      .attr("transform", "translate(0," + height_bar + ")")
+      .attr("transform", "translate(0," + height + ")")
       .style("font-family", "benton-sans")
       .style("font-size", fsize)
-      .call(d3.axisBottom(x_bar).tickPadding(10).tickSize(3));
+      .call(d3.axisBottom(x).tickPadding(10).tickSize(3));
 
   g.append("g")
       .attr("class", "axis")
       .style("font-size", fsize)
       .style("font-family", "benton-sans")
-      .call(d3.axisLeft(y_bar))//.ticks(5).tickSize(0).tickPadding(25))
+      .call(d3.axisLeft(y))//.ticks(5).tickSize(0).tickPadding(25))
     .append("text")
       .attr("x", 2)
-      .attr("y", y_bar(y_bar.ticks().pop()) + 0.5)
+      .attr("y", y(y.ticks().pop()) + 0.5)
       .attr("dy", "0.32em")
       .attr("fill", "#000")
       .attr("text-anchor", "start");

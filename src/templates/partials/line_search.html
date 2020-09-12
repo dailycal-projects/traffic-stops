@@ -89,7 +89,6 @@ d3.csv("bpd_search.csv", function(error, data) {
   var berk_aa_app = data.filter(function(d) {
     return d.symbol == 'Other';
   });
-  console.log(berk_ai_app)
 
   // Compute the minimum and maximum date, and the maximum price.
   x.domain([berk_aa_app[0].date, berk_aa_app[berk_aa_app.length - 1].date]);
@@ -219,7 +218,7 @@ legend.append("text")
 
     var lines = document.getElementsByClassName('line');
 
-    var mousePerline_search = mouseG_app.selectAll('.mouse-per-line')
+    var mousePerLine_search = mouseG_app.selectAll('.mouse-per-line')
     .data([berk_aa_app, berk_h_app, berk_ai_app,berk_w_app, berk_ap_app])
       .enter()
       .append("g")
