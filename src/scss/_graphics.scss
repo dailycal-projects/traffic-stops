@@ -1,30 +1,68 @@
 #map {
-  width: 70%;
+  width: 90%;
   height: 500px; 
   margin: 0 auto;           
 }
 
-.marker-cluster-small {
-  background-color: rgba(218, 94, 94, 0.6);
+#heatmap {
+  width: 300px;
+  height: 500px; 
+  margin: 0 auto;  
 }
 
-.marker-cluster-small div {
-  background-color: rgba(226, 36, 36, 0.6);
+#marker {
+  text-align: left;
 }
 
-.marker-cluster-medium {
-  background-color: rgba(241, 211, 87, 0.6);
+.legend {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
 }
 
-.marker-cluster-medium div {
-  background-color: rgba(240, 194, 12, 0.6);
+.leaflet-control-layers, .leaflet-control-layers-expanded {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 10px;
+  text-align: left;
+  border: 0;
+  border-style: none;
+  font-size: 14px;
+  font-family: "benton-sans";
+  font-weight: 500;
+}
+
+.leaflet-control-title {
+  background-color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-family: "benton-sans";
+  padding-top: 10px;
+}
+
+.leaflet-control-layers-list {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 0px;
 }
 
 .marker-cluster-large {
-  background-color: rgba(253, 156, 115, 0.6);
+  background-color: rgba(218, 94, 94, 0.6);
 }
 
 .marker-cluster-large div {
+  background-color: rgba(226, 36, 36, 0.6);
+}
+
+.marker-cluster-small {
+  background-color: rgba(241, 211, 87, 0.6);
+}
+
+.marker-cluster-small div {
+  background-color: rgba(240, 194, 12, 0.6);
+}
+
+.marker-cluster-medium {
+  background-color: rgba(253, 156, 115, 0.6);
+}
+
+.marker-cluster-medium div {
   background-color: rgba(241, 128, 23, 0.6);
 }
 

@@ -32,9 +32,9 @@ d3.json("data/data.js", function(data) {
   
       return new L.DivIcon({ html: '<div><span>' + childCount + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
     },
-  });
+  }).addTo(map);
       
-  var greenIcon = new L.Icon({
+  var pedestrianIcon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     iconSize: [25, 41],
@@ -43,7 +43,16 @@ d3.json("data/data.js", function(data) {
     shadowSize: [41, 41]
   });
 
-  var blueIcon = new L.Icon({
+  var bikeIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+
+  var susVehicleIcon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     iconSize: [25, 41],
@@ -52,69 +61,80 @@ d3.json("data/data.js", function(data) {
     shadowSize: [41, 41]
   });
 
-  // var pedestrianMarkers = [];
-  // var bikeMarkers = [];
-  // var susVehicleMarkers = [];
-  // var trafficMarkers = [];
+  var trafficIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+
+  var pedestrianMarkers = [];
+  var bikeMarkers = [];
+  var susVehicleMarkers = [];
+  var trafficMarkers = [];
 
   for (key in data) {
     var value = data[key];
-    if (value.type == "1194") {
-      var colorIcon = blueIcon
-    } else {
-      var colorIcon = greenIcon
-    }
+    var colorIcon = (value.type == 1194 ? pedestrianIcon : value.type == 1196 ? bikeIcon : value.type == "1194B" ? susVehicleIcon : trafficIcon)
     var date = value.month + "/" + value.day + "/2020 " + value.hour + ":" + value.min + " " + value.tod
     var marker = L.marker(value.coordinates, {icon: colorIcon, title: date});
     var description = date;
     marker.bindPopup(description);
 
-    // if (value.type == "Pedestrian Stop") {
-    //   pedestrianMarkers.push(marker)
-    // } else if (value.type == "Bicycle Stop") {
-    //   bikeMarkers.push(marker)
-    // } else if (value.type == "Suspicious Vehicle Stop") {
-    //   susVehicleMarkers.push(marker)
-    // } else {
-    //   trafficMarkers.push(marker)
-    // }
+    if (value.type == 1194) {
+      pedestrianMarkers.push(marker)
+    } else if (value.type == 1196) {
+      bikeMarkers.push(marker)
+    } else if (value.type == "1194B") {
+      susVehicleMarkers.push(marker)
+    } else if (value.type == "T") {
+      trafficMarkers.push(marker)
+    }
 
     markers.addLayer(marker);
   }
 
   map.addLayer(markers);
 
-  // var pedestrianLayer = L.layerGroup(pedestrianMarkers);
-  // var bikeLayer = L.layerGroup(bikeMarkers);
-  // var susVehicleLayer = L.layerGroup(susVehicleMarkers);
-  // var trafficLayer = L.layerGroup(trafficMarkers);
+  var pedestrianLayer = L.featureGroup.subGroup(markers, pedestrianMarkers).addTo(map);
+  var bikeLayer = L.featureGroup.subGroup(markers, bikeMarkers).addTo(map);
+  var susVehicleLayer = L.featureGroup.subGroup(markers, susVehicleMarkers).addTo(map);
+  var trafficLayer = L.featureGroup.subGroup(markers, trafficMarkers).addTo(map);
 
-  // var overlays = {"Pedestrian Stop": pedestrianLayer, "Bicycle Stop": bikeLayer, "Suspicious Vehicle Stop": susVehicleLayer, "Traffic Stop": trafficLayer};
+  var overlays = {
+    "<img src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png' height='32.8' width='20'> Pedestrian": pedestrianLayer, 
+    "<img src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png' height='32.8' width='20'> Bicycle": bikeLayer, 
+    "<img src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png' height='32.8' width='20'> Suspicious Vehicle": susVehicleLayer,
+    "<img src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png' height='32.8' width='20'> Traffic": trafficLayer};
 
-  // var options = {
-  //   groupCheckboxes: true,
-  //   collapsed: false
-  // };
+  var options = {
+    collapsed: false
+  };
 
-  // L.control.layers(null, overlays, options).addTo(map);
+  L.control.layers(null, overlays, options).addTo(map);
 
   map.invalidateSize();
 
-  var legend = L.control({position: 'bottomright'});
+  $(".leaflet-control-layers-overlays").prepend("<h4 class='leaflet-control-title'>Types of stops </h4>");
 
-  legend.onAdd = function (map) {
+  // var legend = L.control({position: 'bottomright'});
 
-      var div = L.DomUtil.create('div', 'info legend'),
-          types = ["Pedestrian Stop", "Other"],
-          labels = ["https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png", "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png"];
+  // legend.onAdd = function (map) {
+
+  //     var div = L.DomUtil.create('div', 'info legend'),
+  //         types = ["Pedestrian", "Bicycle", "Suspicious Vehicle", "Traffic"],
+  //         labels = ["https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png", "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png", "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png", "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png"];
       
-      for (var i = 0; i < types.length; i++) {
-          div.innerHTML +=
-              " <img src="+ labels[i] +" height='41' width='25'> " + "<span style='font-size: 15px'>" + types[i] + "</span>" + "<br>";
-      }
-      return div;
-  };
+  //     div.innerHTML = "<span style='font-size: 16px'> Type of stop </span>"
+  //     for (var i = 0; i < types.length; i++) {
+  //         div.innerHTML +=
+  //             " <div id='marker'> <img src="+ labels[i] +" height='32.8' width='20'> " + "<span style='font-size: 14px'>" + types[i] + "</span>" + "<br> </div>";
+  //     }
+  //     return div;
+  // };
 
-  legend.addTo(map);
+  // legend.addTo(map);
 })
 </script>

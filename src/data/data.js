@@ -23360,23 +23360,6 @@
   {
     "month": 2,
     "day": 4,
-    "hour": 1,
-    "min": 55,
-    "tod": "AM",
-    "address": "H ST / 8TH ST",
-    "city": "",
-    "lat": 37.59859155,
-    "lon": -122.0198022,
-    "coordinates": [
-      37.59859155,
-      -122.0198022
-    ],
-    "type": "T",
-    "reason": "Traffic"
-  },
-  {
-    "month": 2,
-    "day": 4,
     "hour": 7,
     "min": 58,
     "tod": "AM",

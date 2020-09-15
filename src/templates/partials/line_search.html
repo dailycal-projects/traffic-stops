@@ -299,7 +299,8 @@ legend.append("text")
             y.domain([0, 40]).nice();
             d3.select(this).select('text')
             .text(d3.format(',')(d.filter(function (d){return d.date == get_closest(x.invert(pos.x), dates)})[0].price.toFixed(2)))
-
+            .style('font-family', 'benton-sans')
+            
             return "translate(" + mouse[0] + "," + pos.y +")";
           });
       }
