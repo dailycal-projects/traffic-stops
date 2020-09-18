@@ -41,7 +41,7 @@ d3.json("data/data.js", function(data) {
   var popupanchor = [0, -40]
 
   var pedestrianIcon = new L.Icon({
-    iconUrl: '/images/pedestrian.png',
+    iconUrl: 'https://github.com/dailycal-projects/traffic-stops/blob/366b98d697b6be7d25cf20505d39d5e723608c08/src/images/pedestrian.png?raw=true',
     iconSize: iconsize,
     iconAnchor: iconanchor,
     popupAnchor: popupanchor,
@@ -55,14 +55,14 @@ d3.json("data/data.js", function(data) {
   });
 
   var susVehicleIcon = new L.Icon({
-    iconUrl: '/images/sus_vehicle2.png',
+    iconUrl: 'https://raw.githubusercontent.com/dailycal-projects/traffic-stops/366b98d697b6be7d25cf20505d39d5e723608c08/src/images/sus_vehicle.png',
     iconSize: iconsize,
     iconAnchor: iconanchor,
     popupAnchor: popupanchor,
   });
 
   var trafficIcon = new L.Icon({
-    iconUrl: '/images/vehicle.png',
+    iconUrl: 'https://github.com/dailycal-projects/traffic-stops/blob/366b98d697b6be7d25cf20505d39d5e723608c08/src/images/vehicle.png?raw=true',
     iconSize: iconsize,
     iconAnchor: iconanchor,
     popupAnchor: popupanchor,
@@ -102,10 +102,10 @@ d3.json("data/data.js", function(data) {
   var trafficLayer = L.featureGroup.subGroup(markers, trafficMarkers).addTo(map);
 
   var overlays = {
-    "<img src='/images/pedestrian.png' height='45' width='45'> Pedestrian": pedestrianLayer, 
+    "<img src='https://github.com/dailycal-projects/traffic-stops/blob/366b98d697b6be7d25cf20505d39d5e723608c08/src/images/pedestrian.png?raw=true' height='45' width='45'> Pedestrian": pedestrianLayer, 
     "<img src='https://raw.githubusercontent.com/dailycal-projects/traffic-stops/b15d7c67f1157cefe1d5b9f1fa09c02d5e8e9a0f/src/images/bicycle.png' height='45' width='45'> Bicycle": bikeLayer, 
-    "<img src='/images/sus_vehicle2.png' height='45' width='45'> Suspicious Vehicle": susVehicleLayer,
-    "<img src='/images/vehicle.png' height='45' width='45'> Traffic": trafficLayer};
+    "<img src='https://raw.githubusercontent.com/dailycal-projects/traffic-stops/366b98d697b6be7d25cf20505d39d5e723608c08/src/images/sus_vehicle.png' height='45' width='45'> Suspicious Vehicle": susVehicleLayer,
+    "<img src='https://github.com/dailycal-projects/traffic-stops/blob/366b98d697b6be7d25cf20505d39d5e723608c08/src/images/vehicle.png?raw=true' height='45' width='45'> Traffic": trafficLayer};
 
   var options = {
     collapsed: false
@@ -117,22 +117,5 @@ d3.json("data/data.js", function(data) {
 
   $(".leaflet-control-layers-overlays").prepend("<h4 class='leaflet-control-title'>Types of stops </h4>");
 
-  // var legend = L.control({position: 'bottomright'});
-
-  // legend.onAdd = function (map) {
-
-  //     var div = L.DomUtil.create('div', 'info legend'),
-  //         types = ["Pedestrian", "Bicycle", "Suspicious Vehicle", "Traffic"],
-  //         labels = ["https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png", "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png", "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png", "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png"];
-      
-  //     div.innerHTML = "<span style='font-size: 16px'> Type of stop </span>"
-  //     for (var i = 0; i < types.length; i++) {
-  //         div.innerHTML +=
-  //             " <div id='marker'> <img src="+ labels[i] +" height='32.8' width='20'> " + "<span style='font-size: 14px'>" + types[i] + "</span>" + "<br> </div>";
-  //     }
-  //     return div;
-  // };
-
-  // legend.addTo(map);
 })
 </script>
