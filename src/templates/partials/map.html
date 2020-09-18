@@ -18,6 +18,8 @@ d3.json("data/data.js", function(data) {
 
   var markers = L.markerClusterGroup({
     maxClusterRadius: 120,
+    showCoverageOnHover: false,
+    spiderLegPolylineOptions: {weight: 0},
     iconCreateFunction: function (cluster) {
         var childCount = cluster.getChildCount();
 
@@ -34,40 +36,36 @@ d3.json("data/data.js", function(data) {
     },
   }).addTo(map);
       
+  var iconsize = [60, 60]
+  var iconanchor = [30, 50]
+  var popupanchor = [0, -40]
+
   var pedestrianIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    iconUrl: '/images/pedestrian.png',
+    iconSize: iconsize,
+    iconAnchor: iconanchor,
+    popupAnchor: popupanchor,
   });
 
   var bikeIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    iconUrl: '/images/bicycle.png',
+    iconSize: iconsize,
+    iconAnchor: iconanchor,
+    popupAnchor: popupanchor,
   });
 
   var susVehicleIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    iconUrl: '/images/sus_vehicle2.png',
+    iconSize: iconsize,
+    iconAnchor: iconanchor,
+    popupAnchor: popupanchor,
   });
 
   var trafficIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+    iconUrl: '/images/vehicle.png',
+    iconSize: iconsize,
+    iconAnchor: iconanchor,
+    popupAnchor: popupanchor,
   });
 
   var pedestrianMarkers = [];
@@ -104,10 +102,10 @@ d3.json("data/data.js", function(data) {
   var trafficLayer = L.featureGroup.subGroup(markers, trafficMarkers).addTo(map);
 
   var overlays = {
-    "<img src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png' height='32.8' width='20'> Pedestrian": pedestrianLayer, 
-    "<img src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png' height='32.8' width='20'> Bicycle": bikeLayer, 
-    "<img src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png' height='32.8' width='20'> Suspicious Vehicle": susVehicleLayer,
-    "<img src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png' height='32.8' width='20'> Traffic": trafficLayer};
+    "<img src='/images/pedestrian.png' height='45' width='45'> Pedestrian": pedestrianLayer, 
+    "<img src='/images/bicycle.png' height='45' width='45'> Bicycle": bikeLayer, 
+    "<img src='/images/sus_vehicle2.png' height='45' width='45'> Suspicious Vehicle": susVehicleLayer,
+    "<img src='/images/vehicle.png' height='45' width='45'> Traffic": trafficLayer};
 
   var options = {
     collapsed: false
