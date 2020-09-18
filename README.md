@@ -1,9 +1,9 @@
-# aff-action
+# traffic-stops
 
-| Title | aff-action |
+| Title | traffic-stops |
 |-|-|
-| Developer    | [Alex Zhao](axyzhao@berkeley.edu) |
-| Link | [http://projects.dailycal.org/2020/aff-action/](http://projects.dailycal.org/2020/aff-action/) |
+| Developers    | [Alex Zhao](mailto:axyzhao@berkeley.edu), [Purva Kapshikar](mailto:pkkapshikar@berkeley.edu) |
+| Link | [http://projects.dailycal.org/](http://projects.dailycal.org/) |
 
 
 ©2020 The Daily Californian
