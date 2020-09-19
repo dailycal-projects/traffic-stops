@@ -76,7 +76,7 @@ d3.json("data/data.js", function(data) {
   for (key in data) {
     var value = data[key];
     var colorIcon = (value.type == 1194 ? pedestrianIcon : value.type == 1196 ? bikeIcon : value.type == "1194B" ? susVehicleIcon : trafficIcon)
-    var date = value.month + "/" + value.day + "/2020 " + value.hour + ":" + value.min + " " + value.tod
+    var date = value.date + " " + value.time + " " + value.tod
     var marker = L.marker(value.coordinates, {icon: colorIcon, title: date});
     var description = date;
     marker.bindPopup(description);

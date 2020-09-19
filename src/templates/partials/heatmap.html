@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <style>
+      rect.bordered {
+        stroke: #FFFFFF;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 12px;
+        font-family: "benton-sans";
+      }
+
+    </style>
+    <script src="https://d3js.org/d3.v3.js"></script>
+  </head>
+  <body>
+    <div id="heatmap"></div>
+    <div id="dataset-picker">
+    </div>
+    <script type="text/javascript">
+          width = 760,
+          height = 250,
+          mapTile = Math.floor(width / 24),
+          legendTile = mapTile * 2.5,
+          colors = ["#ffffcc","#ffeda0","#fed976","#feb24c","#fd8d3c","#fc4e2a","#e31a1c","#b10026"],
+          days = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12a"];
+          datasets = ["data/pedestrian.tsv", "data/bike.tsv", "data/sus_vehicle.tsv", "data/traffic.tsv"];
+
+      var svg = d3.select("#heatmap").append("svg")
+          .attr("width", 820)
+          .attr("height", 360)
+          .append("g")
+          .attr("transform", "translate(70, 50)");
+
+      var dayLabels = svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * mapTile; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-45," + mapTile / 1.5 + ")");
+
+      var timeLabels = svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * mapTile; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(-20, -6)");
+
+      var heatmapChart = function(file) {
+        d3.tsv(file,
+        function(d) {
+          return {
+            day: +d.dow,
+            hour: +d.hour,
+            value: +d.count
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([0, 8, 16])
+              .range(colors);
+
+          var tiles = svg.selectAll(".hour")
+              .data(data, function(d) {return d.day+':'+d.hour;});
+
+          tiles.append("title");
+
+          tiles.enter().append("rect")
+              .attr("x", function(d) { return (d.hour - 1) * mapTile; })
+              .attr("y", function(d) { return (d.day - 1) * mapTile; })
+              .attr("class", "hour bordered")
+              .attr("width", mapTile)
+              .attr("height", mapTile)
+              .style("fill", colors[0]);
+
+          tiles.style("fill", function(d) { return colorScale(d.value); });
+
+          tiles.select("title").text(function(d) { return d.value; });
+          
+          tiles.exit().remove();
+
+          var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; });
+
+          legend.enter().append("g")
+              .attr("class", "legend");
+
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendTile * i; })
+            .attr("y", height)
+            .attr("width", legendTile)
+            .attr("height", mapTile / 2)
+            .style("fill", function(d, i) { return colors[i]; });
+
+          legend.append("text")
+            .text(function(d) { return ">= " + Math.round(d); })
+            .attr("x", function(d, i) { return legendTile * i; })
+            .attr("y", height + mapTile)
+            .attr("transform", "translate(25, 0)");
+
+          legend.exit().remove();
+
+        });  
+      };
+
+      heatmapChart(datasets[0]);
+      
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".dataset-button")
+        .data(datasets);
+
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ 
+          if (d == "data/pedestrian.tsv") {
+            return "Pedestrian"
+          } else if (d == "data/bike.tsv") {
+            return "Bicycle"
+          } else if (d == "data/sus_vehicle.tsv") {
+            return "Suspicious Vehicle"
+          } else {
+            return "Traffic"
+          }})
+        .attr("type", "button")
+        .attr("class", "dataset-button")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
+    </script>
+  </body>
+</html>
