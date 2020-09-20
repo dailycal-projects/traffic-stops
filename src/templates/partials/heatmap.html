@@ -24,15 +24,15 @@
           width = 760,
           height = 250,
           mapTile = Math.floor(width / 24),
-          legendTile = mapTile * 2.5,
+          legendTile = mapTile * 2.75,
           colors = ["#ffffcc","#ffeda0","#fed976","#feb24c","#fd8d3c","#fc4e2a","#e31a1c","#b10026"],
           days = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-          times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12a"];
+          times = ["12a", "1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p"];
           datasets = ["data/pedestrian.tsv", "data/bike.tsv", "data/sus_vehicle.tsv", "data/traffic.tsv"];
 
       var svg = d3.select("#heatmap").append("svg")
           .attr("width", 820)
-          .attr("height", 360)
+          .attr("height", 340)
           .append("g")
           .attr("transform", "translate(70, 50)");
 
@@ -52,7 +52,7 @@
             .attr("x", function(d, i) { return i * mapTile; })
             .attr("y", 0)
             .style("text-anchor", "middle")
-            .attr("transform", "translate(-20, -6)");
+            .attr("transform", "translate(-15, -6)");
 
       var heatmapChart = function(file) {
         d3.tsv(file,
@@ -104,7 +104,7 @@
             .text(function(d) { return ">= " + Math.round(d); })
             .attr("x", function(d, i) { return legendTile * i; })
             .attr("y", height + mapTile)
-            .attr("transform", "translate(25, 0)");
+            .attr("transform", "translate(20, 5)");
 
           legend.exit().remove();
 
@@ -113,7 +113,8 @@
 
       heatmapChart(datasets[0]);
       
-      var datasetpicker = d3.select("#dataset-picker").selectAll(".dataset-button")
+      var datasetpicker = d3.select("#dataset-picker")
+        .selectAll(".dataset-button")
         .data(datasets);
 
       datasetpicker.enter()
@@ -132,6 +133,8 @@
         .attr("class", "dataset-button")
         .on("click", function(d) {
           heatmapChart(d);
+          d3.selectAll(".dataset-button").style("background-color", "#efefef")
+          d3.select(this).style("background-color", "#bbb")
         });
     </script>
   </body>
