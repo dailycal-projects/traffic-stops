@@ -15,7 +15,7 @@
 }
 
 .dataset-button {
-  margin-left: 5px;
+  margin: 5px;
   background-color: #efefef;
   border-style: none;
   border-radius: 4px;
@@ -55,11 +55,11 @@
 }
 
 .leaflet-marker-icon.marker-cluster.marker-cluster-large {
-  background-color: rgba(252, 78, 42, 0.5);
+  background-color: rgba(252, 78, 42, 0.4);
 }
 
 .leaflet-marker-icon.marker-cluster.marker-cluster-large div {
-  background-color: rgba(252, 78, 42, 0.7);
+  background-color: rgba(252, 78, 42, 0.8);
 }
 
 .leaflet-marker-icon.marker-cluster.marker-cluster-medium {
@@ -71,11 +71,11 @@
 }
 
 .leaflet-marker-icon.marker-cluster.marker-cluster-small {
-  background-color: rgba(254, 178, 76, 0.5);
+  background-color: rgba(254, 217, 118, 0.4);
 }
 
 .leaflet-marker-icon.marker-cluster.marker-cluster-small div {
-  background-color: rgba(254, 178, 76, 0.8);
+  background-color: rgba(254, 217, 118, 0.8);
 }
 
 
