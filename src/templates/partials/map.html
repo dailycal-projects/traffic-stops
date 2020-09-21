@@ -19,7 +19,7 @@ d3.json("data/data.js", function(data) {
   var markers = L.markerClusterGroup({
     maxClusterRadius: 120,
     showCoverageOnHover: false,
-    spiderLegPolylineOptions: {weight: 0},
+    spiderLegPolylineOptions: {weight: 0}, 
     iconCreateFunction: function (cluster) {
         var childCount = cluster.getChildCount();
 
@@ -41,28 +41,28 @@ d3.json("data/data.js", function(data) {
   var popupanchor = [0, -40]
 
   var pedestrianIcon = new L.Icon({
-    iconUrl: 'https://github.com/dailycal-projects/traffic-stops/blob/366b98d697b6be7d25cf20505d39d5e723608c08/src/images/pedestrian.png?raw=true',
+    iconUrl: 'https://raw.githubusercontent.com/dailycal-projects/traffic-stops/a0805add78f27e0169d280586251c4c55682d570/src/images/pedestrian.png',
     iconSize: iconsize,
     iconAnchor: iconanchor,
     popupAnchor: popupanchor,
   });
 
   var bikeIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/dailycal-projects/traffic-stops/b15d7c67f1157cefe1d5b9f1fa09c02d5e8e9a0f/src/images/bicycle.png',
+    iconUrl: 'https://raw.githubusercontent.com/dailycal-projects/traffic-stops/a0805add78f27e0169d280586251c4c55682d570/src/images/bicycle.png',
     iconSize: iconsize,
     iconAnchor: iconanchor,
     popupAnchor: popupanchor,
   });
 
   var susVehicleIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/dailycal-projects/traffic-stops/366b98d697b6be7d25cf20505d39d5e723608c08/src/images/sus_vehicle.png',
+    iconUrl: 'https://raw.githubusercontent.com/dailycal-projects/traffic-stops/a0805add78f27e0169d280586251c4c55682d570/src/images/sus_vehicle.png',
     iconSize: iconsize,
     iconAnchor: iconanchor,
     popupAnchor: popupanchor,
   });
 
   var trafficIcon = new L.Icon({
-    iconUrl: 'https://github.com/dailycal-projects/traffic-stops/blob/366b98d697b6be7d25cf20505d39d5e723608c08/src/images/vehicle.png?raw=true',
+    iconUrl: 'https://raw.githubusercontent.com/dailycal-projects/traffic-stops/a0805add78f27e0169d280586251c4c55682d570/src/images/vehicle.png',
     iconSize: iconsize,
     iconAnchor: iconanchor,
     popupAnchor: popupanchor,
@@ -102,10 +102,10 @@ d3.json("data/data.js", function(data) {
   var trafficLayer = L.featureGroup.subGroup(markers, trafficMarkers).addTo(map);
 
   var overlays = {
-    "<img src='https://github.com/dailycal-projects/traffic-stops/blob/366b98d697b6be7d25cf20505d39d5e723608c08/src/images/pedestrian.png?raw=true' height='45' width='45'> Pedestrian": pedestrianLayer, 
-    "<img src='https://raw.githubusercontent.com/dailycal-projects/traffic-stops/b15d7c67f1157cefe1d5b9f1fa09c02d5e8e9a0f/src/images/bicycle.png' height='45' width='45'> Bicycle": bikeLayer, 
-    "<img src='https://raw.githubusercontent.com/dailycal-projects/traffic-stops/366b98d697b6be7d25cf20505d39d5e723608c08/src/images/sus_vehicle.png' height='45' width='45'> Suspicious Vehicle": susVehicleLayer,
-    "<img src='https://github.com/dailycal-projects/traffic-stops/blob/366b98d697b6be7d25cf20505d39d5e723608c08/src/images/vehicle.png?raw=true' height='45' width='45'> Traffic": trafficLayer};
+    "<img src='https://raw.githubusercontent.com/dailycal-projects/traffic-stops/a0805add78f27e0169d280586251c4c55682d570/src/images/pedestrian.png' height='50' width='50'> Pedestrian": pedestrianLayer, 
+    "<img src='https://raw.githubusercontent.com/dailycal-projects/traffic-stops/a0805add78f27e0169d280586251c4c55682d570/src/images/bicycle.png' height='50' width='50'> Bicycle": bikeLayer, 
+    "<img src='https://raw.githubusercontent.com/dailycal-projects/traffic-stops/a0805add78f27e0169d280586251c4c55682d570/src/images/sus_vehicle.png' height='50' width='50'> Suspicious Vehicle": susVehicleLayer,
+    "<img src='https://raw.githubusercontent.com/dailycal-projects/traffic-stops/a0805add78f27e0169d280586251c4c55682d570/src/images/vehicle.png' height='50' width='50'> Traffic": trafficLayer};
 
   var options = {
     collapsed: false
