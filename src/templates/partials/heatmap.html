@@ -1,21 +1,6 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <style>
-      rect.bordered {
-        stroke: #FFFFFF;
-        stroke-width:2px;   
-      }
-
-      text.mono {
-        font-size: 12px;
-        font-family: "benton-sans";
-      }
-
-    </style>
-    <script src="https://d3js.org/d3.v3.js"></script>
-  </head>
   <body>
     <div id="heatmap"></div>
     <div id="dataset-picker">
@@ -64,16 +49,14 @@
           };
         },
         function(error, data) {
-          var colorScale = d3.scale.quantile()
+          var colorScale = d3.scaleQuantile()
               .domain([0, 8, 16])
               .range(colors);
 
           var tiles = svg.selectAll(".hour")
               .data(data, function(d) {return d.day+':'+d.hour;});
 
-          tiles.append("title");
-
-          tiles.enter().append("rect")
+          var tilesEnter = tiles.enter().append("rect")
               .attr("x", function(d) { return (d.hour - 1) * mapTile; })
               .attr("y", function(d) { return (d.day - 1) * mapTile; })
               .attr("class", "hour bordered")
@@ -81,7 +64,12 @@
               .attr("height", mapTile)
               .style("fill", colors[0]);
 
-          tiles.style("fill", function(d) { return colorScale(d.value); });
+          tilesEnter.append("title");
+
+          tilesEnter.merge(tiles)
+              .transition()
+              .duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
 
           tiles.select("title").text(function(d) { return d.value; });
           
