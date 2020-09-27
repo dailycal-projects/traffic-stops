@@ -69,14 +69,25 @@
         </p>
       </div>
       <center>{% include "partials/stacked_bar.html" %}</center>
+      <div class='story'>
+        <p>The map below shows the frequency and type of traffic stops by the Berkeley Police Department from August 2019 to September 2020. Zoom in or click on a cluster to see the datapoints in finer granularity or use the checkboxes in the legend to change the view.
+        </p>
+      </div>
       <center>{% include "partials/map.html" %}</center>
+      <div class='story'>
+        <p> A majority of stops occured in West and South Berkeley. Pedestrian stops tended to occur closer to the UC Berkeley campus, while bicycle stops were clustered around West Berkeley and the Berkeley Marina. </p>
+        <p> The following graphic shows the counts of the total number of stops, reported by the day of the week and hour from August 2019 to September 2020. Click on the buttons below to switch the view between types of stop. </p>
+      </div>
       <center>{% include "partials/heatmap.html" %}</center>
+      <div class='story'>
+        <p> Pedestrian stops tended to occur on weekday afternoons, while traffic stops were more frequent on weekday mornings and weekend nights. </p>
+      </div>
 
     <div class="nerd-box">
     </body>
 <h4>About this story</h4>
 <p align='left'>
-  Data for re-opening plans for colleges was sourced from <a href="https://data.cityofberkeley.info/"> City of Berkeley Open Data</a>.
+  Data for re-opening plans for colleges was sourced from <a href="https://data.cityofberkeley.info/"> City of Berkeley Open Data </a>. Stops mising geographic coordinates in the dataset were not included in the map. Icons for the map were made by Connor Lin. (attributions)
 </p>
 {% include "partials/_footer.html" %}
 <script type="text/javascript">window.tweetText = "{{META.share.twitter.share_tweet}}";</script>

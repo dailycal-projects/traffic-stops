@@ -90,7 +90,7 @@
 
           legend.append("text")
             .text(function(d) { 
-              return (d == "0" ? ">" : ">=") + Math.round(d); })
+              return ">=" + Math.round(d); })
             .attr("x", function(d, i) { return legendTile * i; })
             .attr("y", height + mapTile)
             .attr("transform", "translate(20, 5)");
