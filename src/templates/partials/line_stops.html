@@ -52,23 +52,23 @@ path.area {
 
 let pageWidth = $(window).width();
 
-var margin = {top: 80, right: 180, bottom: 40, left: 80},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin_line = {top: 80, right: 120, bottom: 40, left: 80},
+    width = 960 - margin_line.left - margin_line.right,
+    height_line = 500 - margin_line.top - margin_line.bottom;
 
 var parse = d3.timeParse("%Y");
 
 // Scales and axes. Note the inverted domain for the y-scale: bigger is up!
 var x = d3.scaleTime().range([0, width]),
-  y = d3.scaleLinear().range([height, 0]),
-  xAxis = d3.axisBottom(x).tickSize(-height),
+  y = d3.scaleLinear().range([height_line, 0]),
+  xAxis = d3.axisBottom(x).tickSize(-height_line),
   yAxis = d3.axisLeft(y).tickArguments(4);
 
 // An area generator, for the light fill.
 var area = d3.area()
     .curve(d3.curveMonotoneX)
     .x(function(d) { return x(d.date); })
-    .y0(height)
+    .y0(height_line)
     .y1(function(d) { return y(d.price); });
 
 // A line generator, for the dark stroke.
@@ -108,24 +108,24 @@ d3.csv("bpd_stop.csv", function(error, data) {
   x.domain([berk_ai_stops[0].date, berk_ai_stops[berk_ai_stops.length - 1].date]);
   y.domain([0, 40]).nice();
 
-  // Add an svg_stops element with the desired dimensions and margin.
+  // Add an svg_stops element with the desired dimensions and margin_line.
   var svg_stops = d3.select("#line_stops").append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("width", width + margin_line.left + margin_line.right)
+      .attr("height", height_line + margin_line.top + margin_line.bottom)
     .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .attr("transform", "translate(" + margin_line.left + "," + margin_line.top + ")")
 
   // Add the clip path.
   svg_stops.append("clipPath")
       .attr("id", "clip")
     .append("rect")
       .attr("width", width)
-      .attr("height", height);
+      .attr("height", height_line);
 
   // Add the x-axis.
   svg_stops.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0," + (height + 10) + ")")
+      .attr("transform", "translate(0," + (height_line + 10) + ")")
       .call(xAxis);
 
   var colors = d3.scaleOrdinal().domain(['Black', 'Hispanic', 'White', 'Asian', 'Other']).range(d3.schemeCategory10);
@@ -175,8 +175,8 @@ legend.append("text")
   /* Add 'curtain' rectangle to hide entire graph */
   var curtain = svg_stops.append('rect')
     .attr('x', -1 * width)
-    .attr('y', -1 * height)
-    .attr('height', height)
+    .attr('y', -1 * height_line)
+    .attr('height', height_line)
     .attr('width', width)
     .attr('class', 'curtain')
     .attr('transform', 'rotate(180)')
@@ -185,7 +185,7 @@ legend.append("text")
   // Add the y-axis.
   svg_stops.append("g")
       .attr("class", "y axis")
-      .attr("transform", "translate(" + width + ",0)")
+      .attr("transform", "translate(" + (width) + ",0)")
       .call(yAxis);
 
   /* Optionally add a guideline */
@@ -196,7 +196,7 @@ legend.append("text")
     .attr('x1', 1)
     .attr('y1', 1)
     .attr('x2', 1)
-    .attr('y2', height)
+    .attr('y2', height_line)
 
   /* Create a shared transition for anything we're animating */
   var t = svg_stops.transition()
@@ -222,7 +222,7 @@ legend.append("text")
   var mouseG_stops = svg_stops.append("g")
     .attr("class", "mouse-over-effects")
       .attr('width', width) // can't catch mouse events on a g element
-      .attr('height', height);
+      .attr('height', height_line);
 
   mouseG_stops.append("path") // this is the black vertical line to follow mouse
     .attr("class", "mouse-line-app")
@@ -252,7 +252,7 @@ legend.append("text")
 
     var rectG_stops = mouseG_stops.append('svg_stops:rect') // append a rect to catch mouse movements on canvas
       .attr('width', width) // can't catch mouse events on a g element
-      .attr('height', height)
+      .attr('height', height_line)
     .attr('fill', 'none')
     .attr('pointer-events', 'all');
 
@@ -285,7 +285,7 @@ legend.append("text")
         if (mouse[0] < width) {
         d3.select(".mouse-line-app")
           .attr("d", function() {
-            var d = "M" + mouse[0] + "," + height;
+            var d = "M" + mouse[0] + "," + height_line;
             d += " " + mouse[0] + "," + 0;
             return d;
           })

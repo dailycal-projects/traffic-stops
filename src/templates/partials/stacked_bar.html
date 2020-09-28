@@ -6,16 +6,16 @@
 
 var formatPercent = d3.format(".0%");
 
-width_bar = 850 - margin.left - margin.right,
+width_bar = 850 - margin_line.left - margin_line.right,
 height_bar = width_bar * 0.8;
 var div = d3.select("#stacked_bar").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
 var svg = d3.select("#stacked_bar").append("svg")
-              .attr("width", width_bar + margin.left + margin.right)
-              .attr("height", height_bar + margin.top + margin.bottom);
-g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+              .attr("width", width_bar + margin_line.left + margin_line.right)
+              .attr("height", height_bar + margin_line.top + margin_line.bottom);
+g = svg.append("g").attr("transform", "translate(" + margin_line.left + "," + margin_line.top + ")");
 
 var title = svg.append("g")
       	.attr("transform", "translate(" + [width_bar / 2 + 100, 50] + ") ")
@@ -88,7 +88,7 @@ var data = [
 
   //g.append("text")
     //  .attr("x", (width / 2) - 100)
-    //  .attr("y", height + (margin.bottom/1.2))
+    //  .attr("y", height + (margin_line.bottom/1.2))
     //  .style("font-size", 16)
     //  .style("font-family", "benton-sans")
     //  .text("Undergraduate Enrollment")
