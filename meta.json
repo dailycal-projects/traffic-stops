@@ -13,14 +13,14 @@
   },
   "share": {
     "fbook": {
-      "card_title": "Traffic Stops",
-      "card_description": "Analyzing Berkeley Police",
+      "card_title": "Crime in Berkeley",
+      "card_description": "Disparities in law enforcement",
       "author": "dailycal"
     },
     "twitter": {
-      "card_title": "Traffic Stops",
-      "share_tweet": "UC Berkeley's independent student-run newspaper",
-      "card_description": "The latest news from The Daily Californian.",
+      "card_title": "Crime in Berkeley",
+      "card_description": "Disparities in law enforcement",
+      "share_tweet": "Disparities in law enforcement",
       "author": "@dailycal"
     },
     "image": {
