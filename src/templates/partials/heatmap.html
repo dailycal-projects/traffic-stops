@@ -15,13 +15,13 @@
           times = ["12a", "1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p"];
           datasets = ["data/pedestrian.tsv", "data/bike.tsv", "data/sus_vehicle.tsv", "data/traffic.tsv"];
 
-      var svg = d3.select("#heatmap").append("svg")
+      var heatmap = d3.select("#heatmap").append("svg")
           .attr("width", 820)
           .attr("height", 340)
           .append("g")
           .attr("transform", "translate(70, 50)");
 
-      var dayLabels = svg.selectAll(".dayLabel")
+      var dayLabels = heatmap.selectAll(".dayLabel")
           .data(days)
           .enter().append("text")
             .text(function (d) { return d; })
@@ -30,7 +30,7 @@
             .style("text-anchor", "end")
             .attr("transform", "translate(-45," + mapTile / 1.5 + ")");
 
-      var timeLabels = svg.selectAll(".timeLabel")
+      var timeLabels = heatmap.selectAll(".timeLabel")
           .data(times)
           .enter().append("text")
             .text(function(d) { return d; })
@@ -53,7 +53,7 @@
               .domain([0, 8, 16])
               .range(colors);
 
-          var tiles = svg.selectAll(".hour")
+          var tiles = heatmap.selectAll(".hour")
               .data(data, function(d) {return d.day+':'+d.hour;});
 
           var tilesEnter = tiles.enter().append("rect")
@@ -75,27 +75,27 @@
           
           tiles.exit().remove();
 
-          var legend = svg.selectAll(".legend")
+          var legend = heatmap.selectAll(".legend")
               .data([0].concat(colorScale.quantiles()), function(d) { return d; });
 
-          legend.enter().append("g")
+          var legend_g = legend.enter().append("g")
               .attr("class", "legend");
 
-          legend.append("rect")
+          legend_g.append("rect")
             .attr("x", function(d, i) { return legendTile * i; })
             .attr("y", height)
             .attr("width", legendTile)
             .attr("height", mapTile / 2)
             .style("fill", function(d, i) { return colors[i]; });
 
-          legend.append("text")
+          legend_g.append("text")
             .text(function(d) { 
               return ">=" + Math.round(d); })
             .attr("x", function(d, i) { return legendTile * i; })
             .attr("y", height + mapTile)
             .attr("transform", "translate(20, 5)");
 
-          legend.exit().remove();
+          // legend.exit().remove();
 
         });  
       };
