@@ -148,6 +148,21 @@ h4 {
   }
 }
 
+@media screen and (max-width: 400px) {
+  #line_stops {
+  svg {
+    zoom: 0.32;
+  }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #line_search {
+  svg {
+    zoom: 0.32;
+  }
+  }
+}
 //@media screen and (max-width: 1500px) {
   //#stacked_bar {
      //svg {
