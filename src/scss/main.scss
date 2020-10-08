@@ -156,6 +156,13 @@ h4 {
   }
 }
 
+@media screen and (max-width: 600px) {
+  #line_search {
+  svg {
+    zoom: 0.52;
+  }
+  }
+}
 @media screen and (max-width: 400px) {
   #line_search {
   svg {
