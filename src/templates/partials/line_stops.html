@@ -278,6 +278,7 @@ legend.append("text")
       .on('mousemove', mousemove);
     function mousemove(d, i) {
         var mouse = d3.mouse(this);
+        if (pageWidth < 980) {mouse[0] = mouse[0] ** 1.03}
         if (pageWidth < 900) {mouse[0] = mouse[0] ** 1.075}
         if (pageWidth < 600) {mouse[0] = mouse[0] ** 1.023}
         if (pageWidth < 520) {mouse[0] = mouse[0] ** 1.049}

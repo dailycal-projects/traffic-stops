@@ -112,7 +112,7 @@ h4 {
 
 @media screen and (min-width: 900px) {
   svg {
-    zoom: 0.9;
+    zoom: 1;
   }
 }
 
@@ -148,6 +148,21 @@ h4 {
   }
 }
 
+@media screen and (max-width: 980px) {
+  #line_stops {
+  svg {
+    zoom: 0.9;
+  }
+  }
+}
+
+@media screen and (max-width: 980px) {
+  #line_search {
+  svg {
+    zoom: 0.9;
+  }
+  }
+}
 @media screen and (max-width: 900px) {
   #line_stops {
   svg {
