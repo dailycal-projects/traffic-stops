@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta charset="utf-8">
-        {%block title%}<title>Traffic Stops</title>{%endblock%}
+        {%block title%}<title>Police stops in Berkeley</title>{%endblock%}
         {%include "meta/_icons.html"%}
 
         {%include "meta/_social.html"%}
@@ -54,68 +54,69 @@
       <figcaption class="figcaption"><figcredit style='font-family:benton-sans'>PHILLIP DOWNEY | STAFF</figcaption>
       </figure>
       <div class='story'>
-        <p>In this piece, we investigate traffic stops in the city of Berkeley. First, we delve into when and where traffic stops happen in Berkeley. Next, we specifically examine trends in who is stopped during traffic stops.</p>
+        <p>In this piece, we investigate police stops in the city of Berkeley. First, we delve into when and where stops happen in Berkeley. Next, we examine specific trends in traffic stops.</p>
       </div>
       <h4>When and where do stops happen?</h4>
       <div class='story'>
-        <p>The map below shows the frequency and type of traffic stops by the Berkeley Police Department from September 2019 to August 2020. Zoom in or click on a cluster to see the datapoints in finer granularity or use the checkboxes in the legend to change the view.</p>
+        <p>The map below shows the frequency and types of traffic stops by Berkeley Police Department, or BPD, from September 2019 to August. Zoom in or click on a cluster to see the data points in finer granularity, or use the checkboxes in the legend to change the view.</p>
       </div>
       <center>{% include "partials/map.html" %}</center>
       <div class='story'>
-        <p> A majority of stops occured in West and South Berkeley. Pedestrian stops tended to occur closer to the UC Berkeley campus, while bicycle stops were clustered around West Berkeley and the Berkeley Marina.</p>
-        <p> The following graphic shows the counts of the total number of stops, reported by the day of the week and hour from September 2019 to August 2020. Click on the buttons below to switch the view between types of stop.</p>
+        <p>A majority of stops occurred in West and South Berkeley. Pedestrian stops tended to occur closer to the UC Berkeley campus, while bicycle stops were clustered around West Berkeley and the Berkeley Marina.</p>
+        <p>The following graphic shows the counts of the total number of stops, reported by the day of the week and hour from September 2019 to August. Click on the buttons below to switch the view between stop types.</p>
       </div>
       <center>{% include "partials/heatmap.html" %}</center>
       <script>document.getElementsByClassName('dataset-button')[0].click();</script>
       <div class='story'>
-        <p> Pedestrian stops tended to occur on weekday afternoons, while traffic stops were more frequent on weekday mornings and weekend nights. </p>
+        <p>Pedestrian stops tended to occur on weekday afternoons, while traffic stops were more frequent on weekday mornings and weekend nights.</p>
       </div>
       <h4>Who gets stopped?</h4>
       <div class='story'>
-        <p>Black and Hispanic residents continue to face higher rates of traffic stop and search incidents, according to data published by the Berkeley Police Department, or BPD.</p>
-        <p>In hopes of stopping this trend, Berkeley City Council made the decision to remove police officers from traffic enforcement and instead create a Berkeley Department of Transportation, or BerkDOT, in July. While the program has not been implemented yet, city council hopes to get it up and running within one year, according to East Bay for Everyone Co-Executive Director Darrell Owens.</p>
-        <p>“The goal of the program is to create a unique and hopefully revolutionary and transformative model that looks at traffic enforcement without using guns or police officers at the first line of interaction between public and enforcement,” Owens said.</p>
-        <p>According to Berkeley Copwatch volunteer Holly Allans, traffic stops are instances  where racial profiling occurs” in Berkeley, pointing to a May 2018 report by the Center for Policing Equity. While Black residents make up about 8% of Berkeley’s population, they were stopped 36% of the time, leading to a  6.5 times likeliness to be stopped when compared to white drivers, according to the report.</p>
-        <p>The graph below shows the number of traffic stops per 100 people living in Berkeley, grouped by ethnicity. For instance, in 2016, the Berkeley Police Department stopped Black drivers 35 times out of every 100 Black people residing in Berkeley.</p>
+        <p>Black and Hispanic individuals continue to face higher rates of traffic stop and search incidents, according to data published by BPD.</p>
+        <p>In hopes of stopping this trend, Berkeley City Council made the decision in July to remove police officers from traffic enforcement and instead create a Berkeley Department of Transportation, or BerkDOT. While the program has not been implemented yet, City Council hopes to get it up and running within one year, according to Darrell Owens, co-executive director of East Bay for Everyone.</p>
+        <p>“The goal of the program is to create a unique and hopefully revolutionary and transformative model that looks at traffic enforcement without using guns or police officers at the first line of interaction between the public and enforcement,” Owens said.</p>
+        <p>According to Berkeley Copwatch volunteer Holly Allan, traffic stops are instances in which “racial profiling” occurs in Berkeley, pointing to a May 2018 report by the Center for Policing Equity. While Black residents make up about 8% of Berkeley’s population, they were stopped 36% of the time, and they are 6.5 times more likely to be stopped compared to white drivers, according to the report.</p>
+        <p>The graph below shows the number of traffic stops per 100 people living in Berkeley, grouped by ethnicity. In 2016, out of every 100 Black individuals, on average 35 were stopped by police.</p>
       </div>
       <center>{% include "partials/line_stops.html" %}</center>
       <div class='story'>
-        <p>When looking at recent public data, per 100 people living in Berkeley, Black drivers were stopped 14 times, Hispanic drivers were stopped 4 times and white drivers stopped 2 times in 2020. While this rate has dropped from a high in 2017, Black residents still make up the largest group of people stopped.</p>
-        <p>The graph below shows the number of car searches for every 100 stops. This demonstrates that bias may extend beyond mere stops to the searches themselves.</p>
+        <p>Looking at recent public data, per 100 people living in Berkeley, Black drivers were stopped 14 times, Hispanic drivers were stopped four times and white drivers were stopped two times in 2020. While this rate has dropped from a high in 2017, Black drivers still make up the largest group of people stopped.</p>
+        <p>The graph below shows the number of car searches for every 100 stops, demonstrating that bias may extend beyond mere stops to the searches themselves.</p>
       </div>
       <center>{% include "partials/line_search.html" %}</center>
       <div class='story'>
-        <p>Recent public data from the BPD show that although the overall rate of traffic stops has dipped since 2019, Black people are still stopped at a higher rate compared to other ethnicities. Of individuals who were stopped, Black people were more than twice as likely to have their car searched as white individuals.</p>
+        <p>This data also shows that although the overall rate of traffic stops has dipped since 2019, Black drivers are still stopped at a higher rate compared to other ethnicities. Of those who were stopped, Black drivers were more than twice as likely to have their car searched compared to white drivers.</p>
         <p>According to BPD spokesperson Officer Byron White, law enforcement has historically performed duties that are not always within their area of expertise. He added that officers can be overwhelmed by calls that they are not properly equipped to handle, ranging from animal control to assisting individuals who are mentally ill.</p>
-        <p>“I feel that law enforcement is the last place that people can call for help,” White said. “It’s been an issue nationwide for departments since it is just so easy to call 911. Many services stop at a certain point in the night and things will be referred to the police department, so officers are stuck there trying to figure out what to do about the issue.”</p>
-        <p>Amidst national calls to defund police departments, White agreed that there is room to make public safety more efficient. Bolstering parts of the city that are involved in safety like the Departments of Transportation, Health Services, Fire and even Finance, would help address some of the issues that end up with the police, according to White.</p>
-        <p>White said one example of these changes in action was the creation of the city’s Mobile Crisis Team under the Department of Health Services in the 1980’s. Having experts available to assist police officers in fields where they have informal training, White added, helps residents receive better care.</p>
-        <p>“Our training is helpful but it’s not a degree,” White said. “It won’t completely solve the person’s problem. Having the mobile crisis team helps individuals get the help they need that we as officers can’t always provide.”</p>
-        <p>A similar sentiment was echoed by local organizations who have advocated for the creation of the Department of Transportation and for other police reform.</p>
-        <p>East Bay for Everyone Co-Executive Director Darrell Owens discussed his support for a proposal put forth by Councilmember Ben Bartlett to remove police from mental health calls and have those wellness checks conducted by mental health officials.</p>
+        <p>“I feel that law enforcement is the last place that people can call for help. It’s been an issue nationwide for departments since it is just so easy to call 911,” White said. “Many services stop at a certain point in the night and things will be referred to the police department, so officers are stuck there trying to figure out what to do about the issue.”</p>
+        <p>Amid national calls to defund police departments, White agreed that there is room to make public safety more efficient. Bolstering parts of the city that are involved in safety such as the departments of transportation, health services, fire and even finance would help address some of the issues that end up with the police, according to White.</p>
+        <p>White added that the creation of the city’s Mobile Crisis Team under the health services department in the 1980s is one example of reform in action. Having experts available to assist police officers in fields in which they have informal training helps individuals receive better care.</p>
+        <p>“Our training is helpful, but it’s not a degree,” White said. “It won’t completely solve the person’s problem. Having the Mobile Crisis Team helps individuals get the help they need that we as officers can’t always provide.”</p>
+        <p>Owens echoed this view, noting that local organizations have advocated the creation of the Department of Transportation and other police reforms.</p>
         <p>In practice, Owens pointed to the existing Berkeley Fire Department and Berkeley Parking Enforcement Unit, both of which are made up of unarmed officials that specialize in what they do.</p>
+        <p>Owens also said he supported Councilmember Ben Bartlett’s proposal to create a Specialized Care Unit that would remove police from mental health calls and have wellness checks conducted by mental health officials.</p>
         <p>“It’s not about individually how the police department functions, it’s about the status quo of police in the United States that says police have to respond to all problems,” Owens said. “It’s not just about shifting duties from the police department to an unarmed department. It’s also about reexamining the applications of law.”</p>
-        <p>Ultimately, activism is also about reinvesting money saved on police in preventative solutions that can make streets safer for cyclists, motorists and pedestrians, according to Owens. These solutions, he said, include reducing cars to reduce traffic violations and making sure public transit is funded so that people don’t have to drive.</p>
-        <p>Allans also said in the email that it is also important to look into how traffic enforcement indirectly affects Black, Brown and poor community members, from those who are ticketed who live in their vehicles to those who lose their vehicles because they cannot pay the punitive fines.</p>
-        <p>She added that she is concerned about how other policies such as the revised use-of-force policy, because of the lack of specificity around how they will be implemented.</p>
-        <p>“Though there was a flurry of news reporting from nationwide and even international outlets about the proposal to remove police from traffic stops, there has been far less follow up,” said Allans in the email. “It is clear that in the face of great and necessary changes, institutions will not give up their power without a fight.”</p>
-        <p>A task force created by Arreguín in June focused on fair and impartial policing will tentatively come out with a list of proposed changes for the city council by October, according to Police Review Commission, or PRC, chair Kitty Calavita. Calavita, who also serves on the task force alongside PRC vice chair Nathan Mizell and PRC commissioner Ismail Ramsey, added that the main focus of the task force is identifying racial disparities in stops and searches.</p>
-        <p>Calavita also said that some features of policing that stood out were the facts that Black individuals were much more likely to be subject to traffic stops by officers and that they were also more likely to be searched after being stopped. Despite the higher rate of stops and searches, according to Calavita, the yield rates of searches for white individuals are higher.</p>
+        <p>According to Owens, the city should also reinvest money in preventative solutions that can make streets safer for cyclists, motorists and pedestrians. These solutions include reducing cars to reduce traffic violations and ensuring public transit is funded so people don’t have to drive, Owens said.</p>
+        <p>Allan added that it is also important to look into how traffic enforcement indirectly affects Black, Brown and low-income community members. According to Allan, the latter includes those who are ticketed who live in their vehicles and those who lose their vehicles because they cannot pay the punitive fines.</p>
+        <p>She added that members of Berkeley Copwatch are “concerned” about whether or not BPD can make internal changes they believe are needed, especially when considering specificity and implementation.</p>
+        <p>“Though there was a flurry of news reporting from nationwide and even international outlets about the proposal to remove police from traffic stops, there has been far less follow up,” Allan said in an email. “It is clear that in the face of great and necessary changes, institutions will not give up their power without a fight.”</p>
+        <p>A task force, which was created by Berkeley Mayor Jesse Arreguín in June to focus on fair and impartial policing, will release a list of proposed changes for City Council by October, according to Police Review Commission, or PRC, chair Kitty Calavita.</p>
+        <p>Calavita, who serves on the task force alongside PRC vice-chair Nathan Mizell and PRC commissioner Ismail Ramsey, added that the main focus of the task force is identifying racial disparities in stops and searches.</p>
+        <p>According to Calavita, BPD policing practices that stood out were that Black individuals are much more likely to be subject to traffic stops and are also more likely to be searched after being stopped. Despite these higher rates of stops and searches, according to Calavita, the yield rates of searches for white individuals are higher.</p>
         <p>The bar chart shows the consequences of the stops made by ethnicity.</p>
       </div>
       <center>{% include "partials/stacked_bar.html" %}</center>
       <div class='story'>
-        <p>White drivers who are stopped receive citations are nearly double the rate of Black drivers. In fact, Black drivers are the most likely group to receive a warning, rather than a disciplinary consequence. </p>
-        <p>“These differences really make it seem like the threshold of suspicion for Black individuals is lower, and if that really is the case then we need to find a way to address that inequity,” Calavita said.</p>
-        <p>In addition to the task force, Calavita pointed out the creation of BerkDOT as a potential step forward. Transitioning away from armed law enforcement could make a difference in the outcomes of stops and improve relations between the police and communities of color, according to Calavita.</p>
-        <p>While the new department could help address some of the disparities that exist today, Calavita said that the success of the program would lie in how it is implemented. She added that the momentum of demonstrations across the nation have influenced recent city council actions like the creation of the task force or the passage of the resolution creating BerkDOT.</p>
+        <p>The rate of stopped white drivers who receive citations is nearly double the rate for Black drivers. In fact, Black drivers are the most likely to receive a warning rather than a disciplinary consequence.</p>
+        <p>“These differences really make it seem like the threshold of suspicion for Black individuals is lower, and if that really is the case, then we need to find a way to address that inequity,” Calavita said.</p>
+        <p>In addition to the task force, Calavita pointed to the creation of BerkDOT as a potential step forward. Transitioning away from armed law enforcement could make a difference in the outcomes of stops and improve relations between the police and communities of color, according to Calavita.</p>
+        <p>While the new department could help address some of the disparities that exist, Calavita said the success of the program would be determined by how it is implemented. She added that the momentum of demonstrations across the nation has influenced recent City Council actions such as the creation of the task force and the passage of the resolution creating BerkDOT.</p>
         <p>“We have a lot of momentum for change, and this is the time to act on that,” Calavita said. “Hopefully some very progressive outcomes and proposals will come out of it, but we will have to see how these reforms will materialize.”</p>
       </div>
     <div class="nerd-box">
     </body>
 <h4>About this story</h4>
 <p align='left'>
-  Data for traffic stops was sourced from <a href="https://data.cityofberkeley.info/"> City of Berkeley Open Data </a>. Stops missing geographic coordinates in the dataset were not included in the map. Icons for the map were made by Connor Lin. (attributions)
+  Data for traffic stops was sourced from <a href="https://data.cityofberkeley.info/"> City of Berkeley Open Data </a>. Stops missing geographic coordinates in the dataset were not included in the map. Icons for the map were made by Connor Lin.
 </p>
 {% include "partials/_footer.html" %}
 <script type="text/javascript">window.tweetText = "{{META.share.twitter.share_tweet}}";</script>

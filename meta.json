@@ -13,18 +13,18 @@
   },
   "share": {
     "fbook": {
-      "card_title": "Crime in Berkeley",
+      "card_title": "Police stops in Berkeley",
       "card_description": "Disparities in law enforcement",
       "author": "dailycal"
     },
     "twitter": {
-      "card_title": "Crime in Berkeley",
+      "card_title": "Police stops in Berkeley",
       "card_description": "Disparities in law enforcement",
       "share_tweet": "Disparities in law enforcement",
       "author": "@dailycal"
     },
     "image": {
-      "url": "http://projects.dailycal.org/2020/aff-action/images/share.jpg",
+      "url": "http://projects.dailycal.org/2020/stops/images/bpd_car.jpg",
       "alt": "<Text>",
       "type": "image/jpeg",
       "width": "600",
