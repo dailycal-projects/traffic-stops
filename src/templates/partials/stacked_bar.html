@@ -47,9 +47,9 @@ var data = [
   { Enrollment: "Asian", "Citation": "2054", Warning: "2398",  Arrest: "112" , Other: "57",Total:"4621"},
 ];
 
-  var keys = ["Citation", "Warning", "Arrest", "Other"]
+  var keys = ["Warning", "Citation", "Arrest", "Other"]
 
-  x_bar.domain(["White", "Black", "Hispanic", "Other", "Asian"]);
+  x_bar.domain(["White", "Black", "Hispanic", "Asian", "Other"]);
   y_bar.domain([0, 21000]).nice();
   z.domain(keys);
 
@@ -126,7 +126,6 @@ var data = [
       .attr("dy", "0.32em")
       .attr("fill", "#000")
       .attr("text-anchor", "start");
-
 
   var legend = svg.append("g")
       .style("font-family", "benton-sans")
