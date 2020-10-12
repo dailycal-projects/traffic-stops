@@ -128,6 +128,18 @@ d3.csv("bpd_search.csv", function(error, data) {
           return line(d);
         })
 
+  svg_search.selectAll("myCircles")
+    .data([berk_aa_app, berk_h_app, berk_ai_app,berk_w_app, berk_ap_app])
+    .enter().append("g")
+    .attr("class", "dot")
+    .selectAll("circle")
+    .data(Object)
+    .enter().append("circle")
+        .attr("fill", function(dd) { return colors(dd.symbol); })
+        .attr("cx", function(dd) { return x(dd.date); })
+        .attr("cy", function(dd) { return y(dd.price); })
+        .attr("r", 3.5)
+
 var title = svg_search.append("g")
       	.attr("transform", "translate(" + [width / 2, -50] + ") ")
 

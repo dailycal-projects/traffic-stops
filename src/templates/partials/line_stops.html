@@ -142,6 +142,18 @@ d3.csv("bpd_stop.csv", function(error, data) {
           return line(d);
         })
 
+  svg_stops.selectAll("myCircles")
+    .data([berk_aa_stops, berk_h_stops, berk_ai_stops,berk_w_stops, berk_ap_stops])
+    .enter().append("g")
+    .attr("class", "dot")
+    .selectAll("circle")
+    .data(Object)
+    .enter().append("circle")
+        .attr("fill", function(dd) { return colors(dd.symbol); })
+        .attr("cx", function(dd) { return x(dd.date); })
+        .attr("cy", function(dd) { return y(dd.price); })
+        .attr("r", 3.5)
+
 var title = svg_stops.append("g")
       	.attr("transform", "translate(" + [width / 2, -50] + ") ")
 
