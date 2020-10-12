@@ -52,7 +52,7 @@ path.area {
 
 let pageWidth = $(window).width();
 
-var margin_line = {top: 80, right: 120, bottom: 40, left: 80},
+var margin_line = {top: 80, right: 120, bottom: 40, left: 90},
     width = 960 - margin_line.left - margin_line.right,
     height_line = 500 - margin_line.top - margin_line.bottom;
 
@@ -66,14 +66,14 @@ var x = d3.scaleTime().range([0, width]),
 
 // An area generator, for the light fill.
 var area = d3.area()
-    .curve(d3.curveMonotoneX)
+    .curve(d3.curveLinear)
     .x(function(d) { return x(d.date); })
     .y0(height_line)
     .y1(function(d) { return y(d.price); });
 
 // A line generator, for the dark stroke.
 var line = d3.line()
-    .curve(d3.curveMonotoneX)
+    .curve(d3.curveLinear)
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.price); });
 
@@ -155,7 +155,7 @@ var legend = svg_stops.append("g")
     .attr("text-anchor", "start")
     .attr('transform', "translate(" + (width) + ",0)")
   .selectAll("g")
-    .data([berk_ap_stops, berk_ai_stops, berk_w_stops, berk_h_stops, berk_aa_stops])
+    .data([berk_w_stops, berk_ap_stops, berk_ai_stops, berk_h_stops, berk_aa_stops])
   .enter().append("g")
      .attr("class", "legend")
     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
@@ -166,7 +166,7 @@ legend.append("rect")
     .attr("opacity", 0.8)
   .style("fill", function(d) { return colors(d[0].symbol); });
 legend.append("text")
-    .data(['Black', 'Hispanic', 'White', 'Asian', 'Other'])
+    .data(['White', 'Black', 'Hispanic', 'Asian', 'Other'])
     .attr("x", 30)
     .attr("y", 9)
     .attr("dy", "0.32em")

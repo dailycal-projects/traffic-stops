@@ -52,14 +52,14 @@ var x = d3.scaleTime().range([0, width]),
 
 // An area generator, for the light fill.
 var area = d3.area()
-    .curve(d3.curveMonotoneX)
+    .curve(d3.curveLinear)
     .x(function(d) { return x(d.date); })
     .y0(height_line)
     .y1(function(d) { return y(d.price); });
 
 // A line generator, for the dark stroke.
 var line = d3.line()
-    .curve(d3.curveMonotoneX)
+    .curve(d3.curveLinear)
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.price); });
 
@@ -142,7 +142,7 @@ var legend = svg_search.append("g")
     .attr("text-anchor", "start")
     .attr('transform', "translate(" + (width) + ",0)")
   .selectAll("g")
-    .data([berk_ap_app, berk_ai_app, berk_w_app, berk_h_app, berk_aa_app])
+    .data([berk_w_app, berk_ap_app, berk_ai_app, berk_h_app, berk_aa_app])
   .enter().append("g")
      .attr("class", "legend")
     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
@@ -154,7 +154,7 @@ legend.append("rect")
     .attr("opacity", 0.8)
   .style("fill", function(d) { return colors(d[0].symbol); });
 legend.append("text")
-    .data(['Black', 'Hispanic', 'White', 'Asian', 'Other'])
+    .data(['White','Black', 'Hispanic',  'Asian', 'Other'])
     .attr("x", 30)
     .attr("y", 9)
     .attr("dy", "0.32em")
